@@ -1,0 +1,18 @@
+services:
+  swallow:
+    build: .
+    container_name: swallow
+    hostname: swallow
+    runtime: nvidia
+    ports:
+      - 8888:8888
+    tty: true
+    volumes:
+      - ./py:/swallow/py
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
